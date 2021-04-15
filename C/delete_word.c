@@ -45,21 +45,39 @@ int deleteWord(const char* sentence, const char* word)
         return 1168;
     }
 
-    char *i, *j, *k;
-    if ((j = k = strstr(sentence, word)) != NULL)
+    char *word_removed_sentence, *sentence_ptr1, *sentence_ptr2;
+    sentence_ptr1 = sentence_ptr2 = strstr(sentence, word);
+
+    if (sentence_ptr1 != NULL && sentence_ptr2 != NULL)
     {
-        size_t length = strlen(word);
-        while ( (k = strstr(i = k + length, word) ) != NULL)
+        size_t word_length = strlen(word);
+        word_removed_sentence = sentence_ptr2 + word_length;
+
+        /*
+        // This portion removes all instances of the substring from the sentence.
+        // The question only asks to remove the first instance, so this is 
+        // commented out.
+
+        while (sentence_ptr2 != NULL)
         {
-            while(i < k)
+            word_removed_sentence = sentence_ptr2 + word_length;
+            // Check if another instance of the substring is in the sentence
+            sentence_ptr2 = strstr(word_removed_sentence, word);
+            while(word_removed_sentence < sentence_ptr2)
             {
-                *j++ = *i++;
+                *sentence_ptr1 = *word_removed_sentence;
+                sentence_ptr1++;
+                word_removed_sentence++;
             }
         }
-        while ((*j++ = *i++) != '\0'){continue;}
+        */
+
+        while (*sentence_ptr1 != '\0' || *word_removed_sentence != '\0')
+        {
+            *sentence_ptr1 = *word_removed_sentence;
+            sentence_ptr1++;
+            word_removed_sentence++;
+        }
         return 0;
     }
 }
-
-
-
