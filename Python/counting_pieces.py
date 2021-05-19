@@ -48,3 +48,28 @@ def count_pieces(testString):
     
     counts = [digit, nondigit, space, words]
     return counts
+
+ """
+ <================ Regex version ================>
+ 
+def count_pieces(testString):
+  # Match a digit 0-9, one or more
+  digit_regex = re.compile(r"\d+")
+
+  # Match any character NOT whitespace
+  nonDigit_regex = re.compile(r"[^\s0-9]")
+
+  # Match all whitesapce
+  whitespace_regex = re.compile(r"\s")
+
+  # Match all words
+  words_regex = re.compile(r"[a-zA-Z0-9]+")
+
+  digit_count = len(re.findall(digit_regex, testString))
+  nonDigit_count = len(re.findall(nonDigit_regex, testString))
+  whitespace_count = len(re.findall(whitespace_regex, testString))
+  words_count = len(re.findall(words_regex, testString))
+  
+  return [digit_count, nonDigit_count, whitespace_count, words_count]
+ 
+ """
